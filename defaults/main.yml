@@ -25,4 +25,4 @@ mysql_packages:
 #mysql_root_password_update: yes
 #mysql_user_password_update: no
 
-#mysql_enabled_on_startup: yes
+mysql_enabled_on_startup: yes
