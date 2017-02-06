@@ -1,0 +1,6 @@
+---
+- include: suitecrm.yml
+- include: httpd.yml
+- include: mysql.yml
+- include: cleanup.yml
+
