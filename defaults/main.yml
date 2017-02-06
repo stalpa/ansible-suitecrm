@@ -10,7 +10,7 @@ suitecrm_frontend_host: localhost
 suitecrm_timezone: America/Chicago
 
 # for RedHat systems (and derivatives).
-#mysql_enablerepo: ""
+mysql_enablerepo: ""
 
 mysql_packages:
    - mysql
