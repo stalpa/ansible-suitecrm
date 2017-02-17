@@ -1,3 +1,5 @@
 ---
-- name: Remove zipfile
-  file: path="{{ suitecrm_install_dir }}/SuiteCRM-{{ suitecrm_version }}.zip" state=absent
+- name: "Remove zipfile"
+  file: 
+    path: "{{ suitecrm_install_dir }}/SuiteCRM-{{ suitecrm_version }}.zip" 
+    state: absent
