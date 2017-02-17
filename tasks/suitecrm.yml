@@ -35,17 +35,27 @@
   notify:
   - restart httpd
 
-- name: Create installation directory
-  file: path={{ suitecrm_install_dir }} state=directory
+- name: Rm old directories | Create new installation directory
+  command: rm -rf /var/www/html/suitecrm
+#- file: 
+#     path: "{{ suitecrm_install_dir }}/suitecrm" 
+#     state: directory
 
-- name: Copy SuiteCRM zipfile
+- name: Copy new SuiteCRM zipfile
   copy: src='SuiteCRM-{{ suitecrm_version }}.zip' dest={{ suitecrm_install_dir }}
 
-- name: Unzip SuiteCRM
-  command: unzip -o 'SuiteCRM-{{ suitecrm_version }}.zip'
-  args:
-    chdir: "{{ suitecrm_install_dir }}"
-    creates: "{{ suitecrm_install_dir }}/suitecrm"
+#- name: "Unzip SuiteCRM"
+#  command: unzip -o 'SuiteCRM-{{ suitecrm_version }}.zip'
+#  args:
+#    chdir: "{{ suitecrm_install_dir }}"
+#    creates: "{{ suitecrm_install_dir }}"
+
+# Unarchive a file that is already on the remote machine
+- unarchive:
+    src: "{{ suitecrm_install_dir }}/SuiteCRM-{{ suitecrm_version }}.zip"
+    dest: "{{ suitecrm_install_dir }}"
+    remote_src: True
 
 - name: Move SuiteCRM to www directory 
-  command: mv /var/www/SuiteCRM-{{ suitecrm_version }} /var/www/html/suitecrm
+#  command: rm -rf /var/www/html/suitecrm/
+  command: mv /var/www/html/SuiteCRM-7.8.1 /var/www/html/suitecrm
