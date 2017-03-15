@@ -8,25 +8,31 @@
     - "{{ mysql_packages }}"
   register: rh_mysql_install_packages
 
-- name: "Ensure MySQL Python libraries are installed"
-  yum: 
-    name: MySQL-python
-    state: installed
-    enablerepo: "{{ mysql_enablerepo }}"
+- name: Install the Python MySQLB module
+  pip: name=MySQL-python
 
-- name: "Ensure MySQL is started and enabled on boot"
+- name: "Start Myql and enabled"
   service: 
-    name: mysql 
-    state: started
-    enabled: "{{ mysql_enabled_on_startup }}"
-  register: mysql_service_configuration
+    name: "{{ mysql_service }}"
+    state: "{{ mysql_service_state }}"
+    enabled: "{{ mysql_service_enabled }}"
 
-- name: "MySQL | Ensure MySQL is running"
-  service:
-    name: mysql
-    state: started
+#- name: "Ensure MySQL is started and enabled on boot"
+#  service: 
+#    name: mysql 
+#    state: started
+#    enabled: "{{ mysql_enabled_on_startup }}"
+#  register: mysql_service_configuration
+
+#- name: "MySQL | Ensure MySQL is running"
+#  service:
+#    name: mysqld
+#    state: started
 
 - name: "Create 'suitecrm' database"
-  shell: echo "create database suitecrm" | mysql
+  mysql_db: 
+    name: suitecrm 
+    state: present
 
-#  mysql_db: name=suitecrm state=present
+#  shell: echo "create database suitecrm" | mysql
+
