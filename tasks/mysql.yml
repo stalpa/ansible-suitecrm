@@ -9,7 +9,8 @@
   register: rh_mysql_install_packages
 
 - name: Install the Python MySQLB module
-  pip: name=MySQL-python
+  pip: 
+    name: MySQL-python
 
 - name: "Start Myql and enabled"
   service: 
