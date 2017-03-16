@@ -13,9 +13,9 @@ suitecrm_timezone: America/Chicago
 mysql_enablerepo: ""
 
 mysql_packages:
-   - mysql
-   - mysql-server
-   - gcc
+    - Percona-Server-devel-56
+    - Percona-Server-server-56
+    - MySQL-python27
    
 # The default root user installed by mysql - almost always root
 #mysql_root_username: root

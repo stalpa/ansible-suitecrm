@@ -1,4 +1,11 @@
 ---
+- name: "Installing repository rpm"
+  yum:
+    pkg: "{{ item }}" 
+    state: present
+  with_items:
+    - "{{ percona_Repository }}"
+
 - name: "Ensure MySQL packages are installed"
   yum: 
      name: "{{ item }}" 
@@ -8,9 +15,9 @@
     - "{{ mysql_packages }}"
   register: rh_mysql_install_packages
 
-- name: Install the Python MySQLB module
-  pip: 
-    name: MySQL-python
+#- name: Install the Python MySQLB module
+#  pip: 
+#    name: MySQL-python
 
 - name: "Start Myql and enabled"
   service: 
@@ -18,22 +25,7 @@
     state: "{{ mysql_service_state }}"
     enabled: "{{ mysql_service_enabled }}"
 
-#- name: "Ensure MySQL is started and enabled on boot"
-#  service: 
-#    name: mysql 
-#    state: started
-#    enabled: "{{ mysql_enabled_on_startup }}"
-#  register: mysql_service_configuration
-
-#- name: "MySQL | Ensure MySQL is running"
-#  service:
-#    name: mysqld
-#    state: started
-
 - name: "Create 'suitecrm' database"
   mysql_db: 
     name: suitecrm 
     state: present
-
-#  shell: echo "create database suitecrm" | mysql
-

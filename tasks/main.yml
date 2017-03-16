@@ -1,6 +1,12 @@
 ---
-- include: suitecrm.yml
-- include: httpd.yml
-- include: mysql.yml
-- include: cleanup.yml
+- name: "SuiteCRM"
+  include: suitecrm.yml
 
+- name: "Apache"
+  include: httpd.yml
+
+- name: "Percona"
+  include: percona.yml
+
+- name: "Cleanup"
+  include: cleanup.yml
