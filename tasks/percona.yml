@@ -15,10 +15,6 @@
     - "{{ mysql_packages }}"
   register: rh_mysql_install_packages
 
-#- name: Install the Python MySQLB module
-#  pip: 
-#    name: MySQL-python
-
 - name: "Start Myql and enabled"
   service: 
     name: "{{ mysql_service }}"
