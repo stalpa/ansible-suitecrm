@@ -1,6 +1,7 @@
 ---
 suitecrm_version: 7.8.2
 suitecrm_install_dir: /var/www/html
+suitecrm_dir: /var/www/html/suitecrm
 
 suitecrm_frontend_host: localhost
 #suitecrm_database_host: localhost

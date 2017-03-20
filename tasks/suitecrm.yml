@@ -73,3 +73,16 @@
 
 - name: "Move SuiteCRM to www directory" 
   command: mv "{{ suitecrm_install_dir }}"/SuiteCRM-"{{ suitecrm_version }}" "{{ suitecrm_install_dir }}"/suitecrm
+
+- name: "Change file ownership, group and mode"
+  shell: find "{{ suitecrm_dir }}" -type d -exec chmod 0755 {} \; && find "{{ suitecrm_dir }}" -type f -exec chmod 0644 {} \;
+- file:
+    path: "{{ suitecrm_dir }}/{{ item }}"
+    owner: apache
+    group: apache
+    mode: 0777
+    state: directory
+    recurse: yes 
+  with_items:
+    - cache
+

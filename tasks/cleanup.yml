@@ -1,4 +1,7 @@
 ---
+- name: "Yum clean all"
+  command: yum clean all
+
 - name: "Remove zipfile"
   file: 
     path: "{{ suitecrm_install_dir }}/SuiteCRM-{{ suitecrm_version }}.zip" 
